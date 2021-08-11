@@ -1,3 +1,30 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+admin:
+  path: /blog/admin
+  controller: App\Controller\BlogController::admin
+index:
+  path: /blog
+  controller: App\Controller\BlogController::index
+
+article_add:
+  path: /blog/add
+  controller: App\Controller\BlogController::add
+
+article_show:
+  path: /blog/show/{id}
+  controller: App\Controller\BlogController::show
+
+categorie_add:
+  path: /blog/categorie/add
+  controller: App\Controller\BlogController::addCategorie
+
+article_edit:
+  path: /blog/edit/{id}
+  controller: App\Controller\BlogController::edit
+  requirements:
+    id: '\d+'
+
+article_remove:
+  path: /blog/remove/{id}
+  controller: App\Controller\BlogController::remove
+  requirements:
+    id: '\d+'

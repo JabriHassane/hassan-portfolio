@@ -1,0 +1,24 @@
+{% extends "blogbase.html.twig" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <article class="container">
+        <div class="row">
+            <div class="col s12 m12 l8 offset-l2">
+                <h2>{{ article.title }}</h2>
+                <span>{{ article.publicationDate|date('d/m/Y') }}</span>
+                <p>
+                    <img src="{{ asset('uploads/') ~ article.picture }}" class="responsive-img">
+                </p>
+                <span class="categories">{% for category in article.categories %} {{ category.label }}{{ loop.last ? '' : ',' }} {% endfor %}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l8 offset-l2">
+                <p>
+                    {{ article.content }}
+                </p>
+            </div>
+    </article>
+{% endblock %}

@@ -1,0 +1,11 @@
+{{ form_start(categoform, {'attr': {'class': 'row'}}) }}
+
+<div class="input-field col s12 m6 l6">
+    {{ form_widget(categoform.label, {'attr': {'placeholder': 'Nom du Categorie'}}) }}
+    {{ form_label(categoform.label, 'Le nom de votre categori') }}
+</div>
+
+<div class="input-field col s12 m12 l12">
+    <input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+</div>
+{{ form_end(categoform) }}

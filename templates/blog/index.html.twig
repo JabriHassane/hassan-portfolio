@@ -1,0 +1,23 @@
+{% extends "blogbase.html.twig" %}
+{% block title %}Accueil | {{ parent() }} {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for article in articles %}
+                <div class="col s12 m4 l3">
+                    <div class="article-card">
+                        <img src="{{ asset('uploads/' ~ article.picture) }}" class="responsive-img">
+                        <h2><a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a></h2>
+                        {% if app.user %}
+                            <h3 style="margin: 0">
+                                <a href="{{ path('article_remove', {'id': article.id}) }}" style="color: #AA3333; font-size: 1rem; " target="_blank" onclick="return confirm('are you sur?')">Supprimer</a>
+                                <a href="{{ path('article_edit', {'id': article.id}) }}" style="color: #4070F4; font-size: 1rem; ">Modifier</a>
+                            </h3>
+                        {% endif %}
+                        <span class="date">{{ article.publicationDate|date('d/m/Y') }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
