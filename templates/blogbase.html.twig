@@ -8,7 +8,7 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap&family=Lobster&display=swap" rel="stylesheet">
     {% endblock %}
 </head>
 <body>
@@ -17,14 +17,15 @@
         <div class="container">
             <a href="{{ path('index') }}" class="brand-logo" style="font-family: 'Dancing Script', cursive;">HASSANE BLOG</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ path('index') }}" >Home</a></li>
+                <li><a href="{{ path('index') }}" style="font-family: 'Lobster', cursive;">Home</a></li>
                 {% if app.user %}
-                    <li><a href="{{ path('article_add') }}">Ajouter un Article</a></li>
-                    <li><a href="{{ path('categorie_add') }}">Ajouter une Categorie</a></li>
-
+                    <li><a href="{{ path('admin') }}" style="font-family: 'Lobster', cursive;">Admin</a></li>
+                    <li><a href="{{ path('article_add') }}" style="font-family: 'Lobster', cursive;">Ajouter un Article</a></li>
+                    <li><a href="{{ path('categorie_add') }}" style="font-family: 'Lobster', cursive;">Ajouter une Categorie</a></li>
                     <li><a href="/logout">Logout</a></li>
                 {% else %}
                     <li><a href="/login">Login</a></li>
+                    <li><a href="/register">register</a></li>
                 {% endif %}
             </ul>
         </div>

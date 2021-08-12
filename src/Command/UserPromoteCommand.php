@@ -13,6 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class UserPromoteCommand extends Command
 {
+    //the part after bin/console
     protected static $defaultName = 'app:user:promote';
 
     private $om;
@@ -27,9 +28,9 @@ class UserPromoteCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Promote a user by adding him a new roles.')
-            ->addArgument('email', InputArgument::REQUIRED, 'Email address of the user you want to promote.')
-            ->addArgument('roles', InputArgument::REQUIRED, 'The roles you want to add to the user.')
+            ->setDescription('Ajouter un role pour un utilisateur.')
+            ->addArgument('email', InputArgument::REQUIRED, 'L\'email de l\'utilisateur que vous voulez promote.')
+            ->addArgument('roles', InputArgument::REQUIRED, 'Le role que vous voulez le donner.')
         ;
     }
 
@@ -46,7 +47,7 @@ class UserPromoteCommand extends Command
             $user->addRoles($roles);
             $this->om->flush();
 
-            $io->success('The roles has been successfully added to the user.');
+            $io->success('Le role a ete bien donner a votre utilisateur.');
         } else {
             $io->error('There is no user with that email address.');
         }
