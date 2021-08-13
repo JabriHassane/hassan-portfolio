@@ -1,0 +1,31 @@
+<style>
+    .alert {
+        padding: 20px;
+        background-color: green;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+</style>
+
+{{ form_start(contactForm, {'attr': {'class': 'contact__form'}}) }}
+
+    {{ form_widget(contactForm.name, {'attr': {'class': 'contact__input', 'placeholder': 'Votre nom'}}) }}
+    {{ form_widget(contactForm.email, {'attr': {'class': 'contact__input', 'placeholder': 'Votre email'}}) }}
+    {{ form_widget(contactForm.message, {'attr': {'class': 'contact__input', 'placeholder': 'Votre message'}}) }}
+    {{ form_widget(contactForm.envoyer, {'attr': {'class': 'contact__button button'}}) }}
+
+{{ form_end(contactForm) }}
