@@ -88,6 +88,31 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "f5ad42002183a6881962683e6d84bbb25cdfce5d"
+        },
+        "files": [
+            "./config/packages/fos_ckeditor.yaml"
+        ]
+    },
+    "helios-ag/fm-elfinder-bundle": {
+        "version": "10.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "10.0",
+            "ref": "addd79a9903ee92664f4cff61eb6cdd1b95945e7"
+        },
+        "files": [
+            "./config/packages/fm_elfinder.yaml",
+            "./config/routes/fm_elfinder.yaml"
+        ]
+    },
     "laminas/laminas-code": {
         "version": "4.4.2"
     },
@@ -221,6 +246,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "studio-42/elfinder": {
+        "version": "2.1.59"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.7"

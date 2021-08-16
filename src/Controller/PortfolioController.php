@@ -54,25 +54,6 @@ class PortfolioController extends AbstractController
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
 
-            //cree et envoyer le message
-            /*
-             $message = (new \Swift_Message(('Nouveau Contact')))
-                ->setFrom($contact['email'])
-                ->setTo('devlop.pev@gmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'emails/contact.html.twig', compact('contact')
-                    ),
-                    'text/html'
-                )
-                ;
-
-            $mailer->send($message);
-            $this->addFlash('message', 'Le message a bien été envoyer!');
-
-            */
-
-
             return $this->render('portfolio/index.html.twig', [
                 'articles' => $articles,
                 'message' => 'Votre Message a ete envoyer avec succe! Merci',

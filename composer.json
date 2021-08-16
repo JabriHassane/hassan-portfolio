@@ -10,6 +10,8 @@
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.9",
+        "friendsofsymfony/ckeditor-bundle": "^2.3",
+        "helios-ag/fm-elfinder-bundle": "^10.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "phpmailer/phpmailer": "^6.5",
         "sensio/framework-extra-bundle": "^5.1",
@@ -78,7 +80,9 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "ckeditor:install": "symfony-cmd",
+            "elfinder:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -92,7 +96,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": "true",
             "require": "4.4.*"
         }
     }

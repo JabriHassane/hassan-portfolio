@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +25,12 @@ class ArticleType extends AbstractType
                 'data_class' => null
             ])
             ->add('title', TextType::class, ['required' => false])
-            ->add('content', TextareaType::class, ['required' => false])
+            ->add('content', CKEditorType::class, [
+                'config' => [
+                    'uiColor' => '00e5ff',
+                    'required' => true
+                ]
+            ])
             ->add('isPublished', CheckboxType::class, ['required' => false])
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
