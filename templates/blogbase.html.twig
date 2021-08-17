@@ -17,9 +17,11 @@
         <div class="container">
             <a href="{{ path('index') }}" class="brand-logo" style="font-family: 'Dancing Script', cursive;">HASSANE BLOG</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ path('index') }}" style="font-family: 'Lobster', cursive;">Home</a></li>
+                <li><a href="{{ path('index') }}" style="font-family: 'Lobster', cursive;">Blog</a></li>
+                <li><a href="{{ path('index_works') }}" style="font-family: 'Lobster', cursive;">Works</a></li>
                 {% if app.user %}
                     <li><a href="{{ path('admin') }}" style="font-family: 'Lobster', cursive;">Admin</a></li>
+                    <li><a href="{{ path('work_add') }}" style="font-family: 'Lobster', cursive;">Ajouter un Work</a></li>
                     <li><a href="{{ path('article_add') }}" style="font-family: 'Lobster', cursive;">Ajouter un Article</a></li>
                     <li><a href="{{ path('categorie_add') }}" style="font-family: 'Lobster', cursive;">Ajouter une Categorie</a></li>
                     <li><a href="/logout">Logout</a></li>

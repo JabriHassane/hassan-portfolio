@@ -2,20 +2,18 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Works;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class WorksType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,20 +23,13 @@ class ArticleType extends AbstractType
                 'data_class' => null
             ])
             ->add('title', TextType::class, ['required' => false])
-            ->add('content', CKEditorType::class, [
+            ->add('intro', TextType::class, ['required' => false])
+            ->add('description', CKEditorType::class, [
                 'config' => [
                     'uiColor' => '00e5ff',
                     'toolbar' => 'full',
                     'required' => true
                 ]
-            ])
-            ->add('isPublished', CheckboxType::class, ['required' => false])
-            ->add('categories', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'label',
-                'multiple' => true,
-                'expanded' => false,
-                'required' => false
             ])
         ;
     }
@@ -46,7 +37,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Works::class,
         ]);
     }
 }

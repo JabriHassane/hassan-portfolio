@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\User;
+use App\Entity\Works;
 use App\Form\ArticleType;
 use App\Form\CategoryType;
+use App\Form\WorksType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -181,6 +183,54 @@ class BlogController extends AbstractController
         }
         return $this->render('blog/addcategory.html.twig', [
             'categoform' => $form->createView()
+        ]);
+    }
+
+    //////////////////////////////// ###---WORKS---#### /////////////////////////////////////////
+
+    // all work
+    public function works()
+    {
+        $works = $this->getDoctrine()->getRepository(Works::class)->findAll();
+
+        return $this->render('work/index.html.twig', ['works' => $works]);
+    }
+
+    // add a new work
+    public function addwork(Request $request)
+    {
+        $work = new Works();
+        $form = $this->createForm(WorksType::class, $work);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+                $file = $form->get('picture')->getData();
+
+                $fileName =  uniqid(). '.' .$file->guessExtension();
+
+                try {
+                    $file->move(
+                        $this->getParameter('images_directory'), // Le dossier dans le quel le fichier va etre charger
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    return new Response($e->getMessage());
+                }
+
+                $work->setPicture($fileName);
+
+
+            $em = $this->getDoctrine()->getManager(); // On récupère l'entity manager
+            $em->persist($work); // On confie notre entité à l'entity manager (on persist l'entité)
+            $em->flush(); // On execute la requete
+
+            return new Response("Le work a bien été enregistrer.");
+        }
+
+        return $this->render('work/add.html.twig', [
+            'formwork' => $form->createView()
         ]);
     }
 }

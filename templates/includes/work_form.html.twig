@@ -1,0 +1,26 @@
+{{ form_start(formwork, {'attr': {'class': 'row'}}) }}
+<div class="input-field col s12 m12 l12">
+    {{ form_widget(formwork.picture) }}
+</div>
+
+<div class="input-field col s12 m6 l6">
+    {{ form_widget(formwork.title, {'attr': {'placeholder': 'Titre de travail'}}) }}
+    {{ form_label(formwork.title, 'le Titre de travail') }}
+    <span class="error">{{ form_errors(formwork.title) }}</span>
+</div>
+
+<div class="input-field col s12 m6 l6">
+    {{ form_widget(formwork.intro, {'attr': {'placeholder': 'introduction'}}) }}
+    {{ form_label(formwork.intro, 'introduction') }}
+    <span class="error">{{ form_errors(formwork.intro) }}</span>
+</div>
+
+<div class="input-field col s12 m12 l12">
+    {{ form_widget(formwork.description) }}
+</div>
+
+
+<div class="input-field col s12 m12 l12">
+    <input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+</div>
+{{ form_end(formwork) }}

@@ -5,6 +5,10 @@ index:
   path: /blog
   controller: App\Controller\BlogController::index
 
+index_works:
+  path: /work
+  controller: App\Controller\BlogController::works
+
 article_add:
   path: /blog/add
   controller: App\Controller\BlogController::add
@@ -26,5 +30,26 @@ article_edit:
 article_remove:
   path: /blog/remove/{id}
   controller: App\Controller\BlogController::remove
+  requirements:
+    id: '\d+'
+
+work_add:
+  path: /work/add
+  controller: App\Controller\BlogController::addwork
+
+work_show:
+  path: /work/show/{id}
+  controller: App\Controller\BlogController::showwork
+
+
+work_edit:
+  path: /work/edit/{id}
+  controller: App\Controller\BlogController::editwork
+  requirements:
+    id: '\d+'
+
+work_remove:
+  path: /work/remove/{id}
+  controller: App\Controller\BlogController::removework
   requirements:
     id: '\d+'
