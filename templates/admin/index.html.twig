@@ -42,6 +42,36 @@
             </div>
 
             <div class="row">
+                <div class="col s12">
+
+                    <h5  style="font-family: 'Dancing Script', cursive;">Works</h5>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Titre</th>
+                            <th>Introduction</th>
+                            <th>Date de publication</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% set i = 1 %}
+                        {% for work in works %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td><a href="{{ path('work_show', {'id': work.id}) }}" target="_blank">{{ work.title }}</a></td>
+                                <td>{{ work.intro}}</td>
+                                <td>{{ work.publicationDate|date('d/m/Y')}}</td>
+                                <td>
+                                    <a href="{{ path('work_edit', {'id': work.id}) }}" ><i class="material-icons blue-text">edit</i></a>
+                                    <a href="{{ path('work_remove', {'id': work.id}) }}" onclick="return confirm('are you sur?')"><i class="material-icons red-text">delete</i></a>
+                                </td>
+                            </tr>
+                            {% set i = i+1 %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col s12 m-t-30">
                     <h5 style="font-family: 'Dancing Script', cursive;">Utilisateurs</h5>
                     <table>

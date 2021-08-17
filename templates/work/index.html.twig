@@ -1,18 +1,9 @@
 {% extends "blogbase.html.twig" %}
 {% block title %}Works | {{ parent() }} {% endblock %}
+
 {% block content %}
     <style>
-        *, *:before, *:after {
-            box-sizing: border-box;
-        }
 
-        html {
-            font-size: 18px;
-            line-height: 1.5;
-            font-weight: 300;
-            color: #333;
-            font-family: "Nunito Sans", sans-serif;
-        }
 
         body {
             margin: 0;
@@ -201,15 +192,6 @@
         }
     </style>
 
-{#
-    <div class="card transition">
-        <h2 class="transition">{{ work.title }}</h2>
-        <p>{{ work.description | raw }}</p>
-        <div class="cta-container transition"><a href="#" class="cta">View More</a></div>
-        <div class="card_circle transition" style="background: url({{ asset('uploads/' ~ work.picture) }}) no-repeat center bottom;"></div>
-    </div>
-    #}
-
     <div class="content">
         <h1 class="heading">All Works</h1>
         <p class="description">Welcome To Hassane portfolio.</p>
@@ -224,15 +206,11 @@
             <div class="back">
                 <div>
                     <p>{{ work.intro | raw }}</p>
-                    {% if app.user %}
-                        <h3 style="margin: 0">
-                            <a href="{{ path('work_remove', {'id': work.id}) }}" style="color: #AA3333; font-size: 1rem; " target="_blank" onclick="return confirm('are you sur?')">Supprimer</a>
-                            <a href="{{ path('work_edit', {'id': work.id}) }}" style="color: #4070F4; font-size: 1rem; ">Modifier</a>
-                        </h3>
-                    {% endif %}
-                    <button class="button">Click Here</button>
+                    <button class="button" href="{{ path('work_show', {'id': work.id}) }}">Click Here</button>
                 </div>
+
             </div>
+
         </a>
         {% endfor %}
     </div>

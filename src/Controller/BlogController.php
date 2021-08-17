@@ -26,10 +26,12 @@ class BlogController extends AbstractController
             ['lastUpdateDate' => 'DESC']
         );
 
+        $works = $this->getDoctrine()->getRepository(Works::class)->findAll();
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         return $this->render('admin/index.html.twig', [
             'articles' => $articles,
+            'works' => $works,
             'users' => $users
         ]);
     }
@@ -47,6 +49,9 @@ class BlogController extends AbstractController
 
     //Ajouter un Article
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function add(Request $request)
     {
         $article = new Article();
@@ -146,6 +151,9 @@ class BlogController extends AbstractController
         ]);
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function remove($id): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -156,7 +164,9 @@ class BlogController extends AbstractController
     }
 
     //Ajouter une categorie
-
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function addCategorie(Request $req)
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
@@ -197,6 +207,9 @@ class BlogController extends AbstractController
     }
 
     // add a new work
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     public function addwork(Request $request)
     {
         $work = new Works();
@@ -232,5 +245,72 @@ class BlogController extends AbstractController
         return $this->render('work/add.html.twig', [
             'formwork' => $form->createView()
         ]);
+    }
+
+    //Aficher un work
+    public function showwork(Works $work)
+    {
+        return $this->render('work/show.html.twig', [
+            'work' => $work
+        ]);
+    }
+
+    //modifier work
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function editwork(Works $work, Request $request)
+    {
+        $oldWork = $work->getPicture();
+
+        $form = $this->createForm(WorksType::class, $work);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+
+                $file = $form->get('picture')->getData();
+                $fileName = uniqid(). '.' .$file->guessExtension();
+
+                try {
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    return new Response($e->getMessage());
+                }
+
+                $work->setPicture($fileName);
+
+                $work->setPicture($oldWork);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($work);
+            $em->flush();
+
+            return new Response('L\'article a bien été modifier.');
+        }
+
+        return $this->render('work/edit.html.twig', [
+            'work' => $work,
+            'formwork' => $form->createView()
+        ]);
+    }
+
+    //supprimer un work
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function removework($id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $work = $entityManager->getRepository(Works::class)->find($id);
+        $entityManager->remove($work);
+        $entityManager->flush();
+        return new Response('<h1 style="color: green"> work Supprimer :' .$id. '</h1>');
     }
 }
