@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Works;
 use App\Form\ContactType;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPUnit\Util\Exception;
@@ -18,6 +19,7 @@ class PortfolioController extends AbstractController
      */
     public function index(Request $request, \Swift_Mailer $mailer)
     {
+        $works = $this->getDoctrine()->getRepository(Works::class)->findAll();
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
@@ -40,8 +42,8 @@ class PortfolioController extends AbstractController
             $mail->Host = 'smtp.gmail.com';
             $mail->Port = '587';
             $mail->isHTML();
-            $mail->Username = 'devlop.pev@gmail.com';
-            $mail->Password = 'sony.figuig';
+            $mail->Username = '*********@gmail.com';
+            $mail->Password = '*********';
             $mail->setFrom('test@me.com');
             $mail->Subject = 'Nouveau Contact '.$name;
             $mail->Body = $from.'\n'.$content;
@@ -66,6 +68,7 @@ class PortfolioController extends AbstractController
 
         return $this->render('portfolio/index.html.twig', [
             'articles' => $articles,
+            'works' => $works,
             'contactForm'=>$form->createView()
         ]);
     }

@@ -136,28 +136,10 @@
 <!--===== WORK =====-->
 <section class="work section" id="work">
     <h2 class="section-title">Work</h2>
-
-    <div class="work__container bd-grid">
-        <div class="work__img">
-            <img src="assets/img/work1.jpg" alt="">
-        </div>
-        <div class="work__img">
-            <img src="assets/img/work2.jpg" alt="">
-        </div>
-        <div class="work__img">
-            <img src="assets/img/work3.jpg" alt="">
-        </div>
-        <div class="work__img">
-            <img src="assets/img/work4.jpg" alt="">
-        </div>
-        <div class="work__img">
-            <img src="assets/img/work5.jpg" alt="">
-        </div>
-        <div class="work__img">
-            <img src="assets/img/work6.jpg" alt="">
-        </div>
-    </div>
+    {% include "work/work.html.twig" %}
 </section>
+    <a href="{{  path('index_works')  }}" class="button" target="_blank" style="margin-left: 45%">Voir plus</a>
+
 <!-- ==== Blog === -->
     <section class="blog section" id="blog">
         <h2 class="section-title">Blog</h2>
